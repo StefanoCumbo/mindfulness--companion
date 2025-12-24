@@ -41,7 +41,7 @@ export default function Journal() {
                 {response && (
                     <div className="journal-response">
                         <h2>AI Reflection</h2>
-                        <p> {response.prompt}</p>
+                        <p> thank you for sharing your thoughts...</p>
                         <p> {response.insight}</p>
                         <p> {response.followUp}</p>
                     </div>
