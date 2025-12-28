@@ -1,109 +1,65 @@
-# Welcome to React Router + Cloudflare Workers!
+Mindfulness Companion – Quick Start Instructions
+-------------------------------------------------
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/react-router-starter-template)
 
-![React Router Starter Template Preview](https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/bfdc2f85-e5c9-4c92-128b-3a6711249800/public)
+SETUP 
+1. Install dependencies
+   npm install
 
-<!-- dash-content-start -->
+2. Login to Cloudflare
+   npx wrangler login
+   
+   (Opens browser - authorize with your Cloudflare account)
 
-A modern, production-ready template for building full-stack React applications using [React Router](https://reactrouter.com/) and the [Cloudflare Vite plugin](https://developers.cloudflare.com/workers/vite-plugin/).
+3. Create KV namespace for storage
+   npx wrangler kv:namespace create "REFLECTIONS"
+   
+   Copy the ID from output, looks like:
 
-## Features
+4. Update wrangler.json
+   Open wrangler.json and add your KV ID:
+   
+   "kv_namespaces": [
+     {
+       "binding": "REFLECTIONS",
+       "id": "YOUR_KV_ID_HERE"  ← Paste your ID here
+     }
+   ]
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-- 🔎 Built-in Observability to monitor your Worker
-<!-- dash-content-end -->
+-------------------------------------------------
+RUNNING LOCALLY
+-------------------------------------------------
 
-## Getting Started
+5. Start dev server
+   npm run dev
+  
+6. Test the app
+   - Click "Start Journaling"
+   - Type a message and click Send
+   - AI should respond in 1-3 seconds
+   - Go to "View Past Reflections" to see history
 
-Outside of this repo, you can start a new project with this template using [C3](https://developers.cloudflare.com/pages/get-started/c3/) (the `create-cloudflare` CLI):
+DEPLOYING
 
-```bash
-npm create cloudflare@latest -- --template=cloudflare/templates/react-router-starter-template
-```
+7a. Push to GitHub
+    git add .
+    git commit -m "Initial commit"
+    git push origin main
 
-A live public deployment of this template is available at [https://react-router-starter-template.templates.workers.dev](https://react-router-starter-template.templates.workers.dev)
+8a. Connect to Cloudflare Pages
+    - Go to https://dash.cloudflare.com
+    - Navigate to Workers & Pages
+    - Click "Create application" → Pages → "Connect to Git"
+    - Select your repository
+    - Build settings:
+       Build command: npm run build
+       Build output: build/client
+    - Click "Save and Deploy"
 
-### Installation
+9a. Done!
+    Every push to main auto-deploys.
+    Your URL: https://your-project.pages.dev
 
-Install the dependencies:
 
-```bash
-npm install
-```
 
-### Development
-
-Start the development server with HMR:
-
-```bash
-npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
-
-## Typegen
-
-Generate types for your Cloudflare bindings in `wrangler.json`:
-
-```sh
-npm run typegen
-```
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Previewing the Production Build
-
-Preview the production build locally:
-
-```bash
-npm run preview
-```
-
-## Deployment
-
-If you don't have a Cloudflare account, [create one here](https://dash.cloudflare.com/sign-up)! Go to your [Workers dashboard](https://dash.cloudflare.com/?to=%2F%3Aaccount%2Fworkers-and-pages) to see your [free custom Cloudflare Workers subdomain](https://developers.cloudflare.com/workers/configuration/routing/workers-dev/) on `*.workers.dev`.
-
-Once that's done, you can build your app:
-
-```sh
-npm run build
-```
-
-And deploy it:
-
-```sh
-npm run deploy
-```
-
-To deploy a preview URL:
-
-```sh
-npx wrangler versions upload
-```
-
-You can then promote a version to production after verification or roll it out progressively.
-
-```sh
-npx wrangler versions deploy
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+  

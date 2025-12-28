@@ -6,3 +6,4 @@ export default [
     route("history", "routes/history.tsx"),
 
 ] satisfies RouteConfig;
+
