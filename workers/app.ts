@@ -24,7 +24,7 @@ export default {
 			return handleReflect(request, env, ctx);
 		}
 		
-		// Handle React Router app
+		
 		return requestHandler(request, {
 			cloudflare: { env, ctx },
 		});
